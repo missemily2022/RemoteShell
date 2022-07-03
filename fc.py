@@ -1,9 +1,8 @@
 import sys
 import os
 import getpass
-text_file = open("rc.conf", "w")
-text_file.write("[GC]\ntype = drive\nscope = drive\nservice_account_file = accounts/1.json\nservice_account_file_path = accounts/")
-text_file.close()
+with open("rc.conf", "w") as text_file:
+  text_file.write("[GC]\ntype = drive\nscope = drive\nservice_account_file = accounts/1.json\nservice_account_file_path = accounts/")
 username = getpass.getuser()
 print('\033[1;31;40mHey,Sexy! wanna clone some TBs?\nLets Get you started\n')
 FRflag = ("--drive-server-side-across-configs --ignore-existing --stats=1s --stats-one-line -vP --checkers=256 --transfers=256 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first")
@@ -14,7 +13,7 @@ if os.path.isdir('accounts'):
 else:
   print("\033[1;31;40m Account folder containing SA's JSON not found\n")
   sys.exit()
-print('\033[1;33;40mChoose what you like to do \n')  
+print('\033[1;33;40mChoose what you like to do \n')
 MD = input("\033[1;36;40mA.Copy\nB.Move\nC.Sync\nD.Dedupe\nE.RemoveDirs\nF.Size\nG.Dir listing\nNOTE:Read Rclone Documentations for more info on these operations\nOperation(Chose either A/B/C/D/E/F/G): \n")
 if MD == "A":
   print("\033[1;32;40mCopy Selected\nIt will COPY content from SRC to DST\n")
